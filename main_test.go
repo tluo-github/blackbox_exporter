@@ -39,6 +39,10 @@ var c = &config.Config{
 				},
 			},
 		},
+		"nas_xxx": config.Module{
+			Prober:  "nas",
+			Timeout: 10 * time.Second,
+		},
 	},
 }
 
