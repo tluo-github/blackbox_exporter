@@ -120,6 +120,10 @@ type Module struct {
 	TCP     TCPProbe      `yaml:"tcp,omitempty"`
 	ICMP    ICMPProbe     `yaml:"icmp,omitempty"`
 	DNS     DNSProbe      `yaml:"dns,omitempty"`
+	NAS     NASProbe      `yaml:"nas,omitempty"`
+}
+
+type NASProbe struct {
 }
 
 type HTTPProbe struct {

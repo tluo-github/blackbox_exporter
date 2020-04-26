@@ -42,6 +42,21 @@ var c = &config.Config{
 	},
 }
 
+func TestNAS(t *testing.T) {
+	req, err := http.NewRequest("GET", "?module=nas_xxx&debug=true&target=/home", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		probeHandler(w, r, c, log.NewNopLogger(), &resultHistory{})
+	})
+	handler.ServeHTTP(rr, req)
+
+	body := rr.Body.String()
+	println(body)
+}
+
 func TestPrometheusTimeoutHTTP(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		time.Sleep(2 * time.Second)

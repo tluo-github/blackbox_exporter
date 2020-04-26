@@ -64,6 +64,7 @@ var (
 		"tcp":  prober.ProbeTCP,
 		"icmp": prober.ProbeICMP,
 		"dns":  prober.ProbeDNS,
+		"nas":  prober.ProbeNAS,
 	}
 )
 
