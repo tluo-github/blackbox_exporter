@@ -303,7 +303,6 @@ func ProbeHTTP(ctx context.Context, target string, module config.Module, registr
 	if !strings.HasPrefix(target, "http://") && !strings.HasPrefix(target, "https://") {
 		target = "http://" + target
 	}
-
 	targetURL, err := url.Parse(target)
 	if err != nil {
 		level.Error(logger).Log("msg", "Could not parse target URL", "err", err)
@@ -402,6 +401,10 @@ func ProbeHTTP(ctx context.Context, target string, module config.Module, registr
 		}
 		request.Header.Set(key, value)
 	}
+
+	// 添加 Referer Header
+	//httpConfig.Headers["Referer"] = target
+	request.Header.Set("Referer", target)
 
 	trace := &httptrace.ClientTrace{
 		DNSStart:             tt.DNSStart,
